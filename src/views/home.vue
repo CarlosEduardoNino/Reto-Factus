@@ -55,7 +55,7 @@
   import { ref, computed, onMounted } from 'vue';
   import { useRouter } from 'vue-router';
   import axios from '../plugins/axios.js';
-  import { QTable, QInput, QSelect, QBtn, QPagination, QTd } from 'quasar';
+ 
   
   const router = useRouter();
   const facturas = ref([]);
@@ -118,7 +118,7 @@
   const fetchFacturas = async () => {
     loading.value = true;
     try {
-      const response = await axios.get('/v1/bills', {
+      const response = await axios.get('', {
         params: {
           'filter[identification]': filters.value.identification,
           'filter[names]': filters.value.names,

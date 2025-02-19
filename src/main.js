@@ -2,6 +2,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { Quasar } from 'quasar'
+import  piniaPluginPersistedState from 'pinia-plugin-persistedstate'
 
 // Importar iconos y CSS de Quasar
 import '@quasar/extras/material-icons/material-icons.css'
@@ -14,6 +15,7 @@ const myApp = createApp(App)
 
 // Usar Pinia y Quasar
 const pinia = createPinia()
+
 
 myApp
   .use(Quasar, { plugins: {} })

@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@quasar/extras": "^1.16.16",
+    "@quasar/extras": "^1.16.17",
     "axios": "^1.7.9",
     "pinia": "^3.0.1",
     "pinia-plugin-persistedstate": "^4.2.0",

@@ -1,113 +1,75 @@
 <template>
-  <div class="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 px-4 py-8">
-    <!-- Contenedor principal con efecto de vidrio -->
-    <div class="grid lg:grid-cols-2 w-full max-w-7xl bg-white/80 backdrop-blur-lg rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/10">
-      <!-- Panel izquierdo -->
-      <div class="hidden lg:block relative h-full min-h-[600px] bg-gradient-to-br from-blue-600 to-indigo-700">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDIwIDAgTCAwIDAgMCAyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20"></div>
-        <div class="relative h-full flex flex-col justify-between p-12 text-white">
-          <div class="space-y-8">
-            <h1 class="text-5xl font-bold tracking-tight leading-none">
-              ¡Bienvenido<br/>de nuevo!
-            </h1>
-            <p class="text-xl text-blue-100 leading-relaxed max-w-md">
-              Accede a tu cuenta para gestionar tu inventario de manera eficiente y segura.
-            </p>
-          </div>
-          <div class="space-y-6">
-            <div class="flex items-center space-x-4">
-              <div class="w-12 h-12 rounded-full bg-white/10 backdrop-blur flex items-center justify-center">
-                <span class="text-2xl">🔒</span>
-              </div>
-              <div>
-                <h3 class="font-semibold">Seguridad Garantizada</h3>
-                <p class="text-sm text-blue-100">Tus datos están protegidos</p>
-              </div>
+  <div class="login-container">
+    <!-- Círculos decorativos animados -->
+    <div class="animated-circle circle-1"></div>
+    <div class="animated-circle circle-2"></div>
+    <div class="animated-circle circle-3"></div>
+
+    <!-- Contenedor principal -->
+    <div class="main-container">
+      <!-- Banner superior -->
+      <div class="banner-container">
+        <div class="banner-content">
+          <div class="logo-container">
+            <div class="logo-circle">
+              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
             </div>
-            <p class="text-sm text-blue-200 font-medium">
-              © 2025 Tu Empresa. Todos los derechos reservados.
-            </p>
           </div>
+          <h1 class="banner-title">Facturación Factus</h1>
+          <p class="banner-subtitle">Tu sistema de gestión empresarial</p>
         </div>
       </div>
 
-      <!-- Panel derecho - Formulario -->
-      <div class="flex items-center justify-center p-4 sm:p-8 lg:p-12">
-        <div class="w-full max-w-md space-y-8">
-          <!-- Logo y encabezado -->
-          <div class="text-center">
-            <div class="inline-block">
-              <logo class="h-16 w-auto transform transition-transform hover:scale-105" />
-            </div>
-            <h2 class="mt-8 text-3xl font-bold tracking-tight text-gray-900">
-              Iniciar Sesión
-            </h2>
-            <p class="mt-3 text-base text-gray-600">
-              Ingresa tus credenciales para continuar
-            </p>
+      <!-- Formulario de login -->
+      <div class="form-container">
+        <div class="form-content">
+          <h2 class="form-title">¡Bienvenido de nuevo!</h2>
+          
+          <!-- Mensaje de error -->
+          <div v-if="errorMessage" class="error-message">
+            <span>{{ errorMessage }}</span>
+            <button @click="errorMessage = ''" class="error-close">×</button>
           </div>
 
-          <!-- Formulario -->
-          <form @submit.prevent="login" class="mt-12 space-y-6">
-            <div class="space-y-5">
-              <!-- Campo Usuario -->
-              <div class="form-group">
-                <label for="username" class="form-label">Usuario</label>
-                <div class="relative">
-                  <input
-                    id="username"
-                    v-model="username"
-                    type="text"
-                    required
-                    class="form-input"
-                    placeholder="Ingresa tu nombre de usuario"
-                  />
-                  <div class="form-icon">👤</div>
-                </div>
-              </div>
-
-              <!-- Campo Contraseña -->
-              <div class="form-group">
-                <label for="password" class="form-label">Contraseña</label>
-                <div class="relative">
-                  <input
-                    id="password"
-                    v-model="password"
-                    type="password"
-                    required
-                    class="form-input"
-                    placeholder="Ingresa tu contraseña"
-                  />
-                  <div class="form-icon">🔒</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Enlaces adicionales -->
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
+          <form @submit.prevent="login" class="login-form">
+            <div class="input-group">
+              <label>Correo Electrónico</label>
+              <div class="input-wrapper">
                 <input
-                  id="remember-me"
-                  type="checkbox"
-                  class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  v-model="email"
+                  type="email"
+                  required
+                  placeholder="Ingresa tu correo electrónico"
                 />
-                <label for="remember-me" class="ml-2 block text-sm text-gray-700">
-                  Recordarme
-                </label>
+                <span class="input-icon">📧</span>
               </div>
-              
             </div>
 
-            <!-- Botón de envío -->
+            <div class="input-group">
+              <label>Contraseña</label>
+              <div class="input-wrapper">
+                <input 
+                  type="password" 
+                  v-model="password"
+                  required 
+                  placeholder="Ingresa tu contraseña" 
+                  autocomplete="current-password">
+                <span class="input-icon">🔒</span>
+              </div>
+            </div>
+
             <button
               type="submit"
               :disabled="loading"
-              class="login-button"
+              class="submit-button"
             >
-              <span v-if="loading" class="flex items-center justify-center">
-              
+              <span v-if="loading">
+                <span class="loading-spinner"></span>
+                Ingresando...
               </span>
-              <span v-else>Iniciar Sesión</span>
+              <span v-else>Ingresar al Sistema</span>
             </button>
           </form>
         </div>
@@ -117,208 +79,300 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import { ref } from 'vue';
-import axios from '../plugins/axios.js';
 import { useRouter } from 'vue-router';
+import apiCliente from '../plugins/axios.js';
 
-const username = ref('');
+
+const email = ref('');
 const password = ref('');
-const router = useRouter();
 const loading = ref(false);
+const errorMessage = ref('');
+const router = useRouter();
 
 const login = async () => {
+  console.log("Usuario: ", email.value);
+console.log("Contraseña: ", password.value);
+
   loading.value = true;
   try {
-    const response = await axios.post('/oauth/token', {
-      username: username.value,
-      password: password.value,
-      grant_type: 'password',
-      client_id: import.meta.env.VITE_VUE_APP_CLIENT_ID,
-      client_secret: import.meta.env.VITE_VUE_APP_CLIENT_SECRET,
-    });
-    sessionStorage.setItem('authToken', response.data.access_token);
-    router.push('/home');
-  } catch (error) {
-    alert('Error: usuario o contraseña incorrectos');
-  } finally {
+    
+  const response = await apiCliente.post('/oauth/token', {
+    username: email.value,  
+    password: password.value,
+    grant_type: 'password',
+    client_id: "9e2e186f-2719-42aa-8b59-e478780401d2",
+    client_secret: "InE6kBPby1XhWyEi94J5WV3fQejhdL7khyTGlvKd"
+    
+  });
+  
+  console.log(response);
+  sessionStorage.setItem('authToken', response.data.access_token);
+  router.push('/home');
+} catch (error) {
+  console.error('Error de inicio de sesión:', error);
+  if (error.response) {
+    console.error("Detalles del error: ", error.response.data);
+  }
+  errorMessage.value = '¡Oops! Credenciales incorrectas. ¡Inténtalo de nuevo!';
+}
+
+ finally {
     loading.value = false;
   }
 };
 </script>
 
 <style scoped>
-/* Estilos base */
-:root {
-  --primary-color: #3b82f6;
-  --primary-darker: #2563eb;
-  --primary-lighter: #60a5fa;
-  --success-color: #10b981;
-  --error-color: #ef4444;
-  --text-primary: #1f2937;
-  --text-secondary: #4b5563;
-  --background-primary: #ffffff;
-  --background-secondary: #f9fafb;
-  --border-color: #e5e7eb;
-  --input-focus-ring: rgba(59, 130, 246, 0.5);
-  --transition-speed: 0.2s;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Estilos de formulario */
-.form-group {
-  animation: fadeIn 0.6s ease-out;
-  animation-fill-mode: both;
-}
-
-.form-group:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.form-label {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-  transition: color var(--transition-speed);
-}
-
-.form-input {
-  width: 100%;
-  padding: 0.75rem 1rem 0.75rem 3rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--text-primary);
-  background-color: var(--background-secondary);
-  border: 2px solid var(--border-color);
-  border-radius: 0.75rem;
-  transition: all var(--transition-speed);
-  appearance: none;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  background-color: var(--background-primary);
-  box-shadow: 0 0 0 4px var(--input-focus-ring);
-}
-
-.form-input::placeholder {
-  color: #9ca3af;
-}
-
-.form-icon {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  pointer-events: none;
-  transition: all var(--transition-speed);
-}
-
-.form-input:focus + .form-icon {
-  color: var(--primary-color);
-}
-
-
-.login-button {
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  width: 100%;
-  padding: 0.875rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 500;
- 
-  
-  border: none;
-  border-radius: 0.75rem;
-  cursor: pointer;
-  transition: all var(--transition-speed);
   overflow: hidden;
-  animation: scaleIn 0.6s ease-out 0.2s;
-  animation-fill-mode: both;
 }
 
-.login-button::before {
-  content: '';
+.animated-circle {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: gray;
-  opacity: 0;
-  transition: opacity var(--transition-speed);
+  border-radius: 50%;
+  animation: float 6s infinite ease-in-out;
 }
 
-.login-button:hover::before {
-  opacity: 1;
+.circle-1 {
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  top: -150px;
+  left: -150px;
+  animation-delay: 0s;
 }
 
-.login-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px var(--input-focus-ring);
+.circle-2 {
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.15);
+  top: 50%;
+  right: -100px;
+  animation-delay: 2s;
 }
 
-.login-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+.circle-3 {
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.1);
+  bottom: -75px;
+  left: 10%;
+  animation-delay: 4s;
 }
 
-.login-button > span {
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+
+.main-container {
+  width: 90%;
+  max-width: 1000px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.banner-container {
+  background: linear-gradient(to right, #4834d4, #686de0);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.banner-content {
   position: relative;
   z-index: 1;
 }
 
-/* Efectos de hover en contenedores */
-.form-group:hover .form-label {
-  color: var(--primary-color);
+.logo-container {
+  margin-bottom: 1rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 640px) {
-  .form-input {
-    font-size: 16px; 
+.logo-circle {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.banner-title {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.banner-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+}
+
+.form-container {
+  padding: 2rem;
+  background: white;
+}
+
+.form-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  color: #2d3436;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2d3436;
+  font-weight: 500;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 1rem;
+  padding-right: 3rem;
+  border: 2px solid #e1e1e1;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+.input-wrapper input:focus {
+  border-color: #4834d4;
+  box-shadow: 0 0 0 4px rgba(72, 52, 212, 0.1);
+  background: white;
+}
+
+.input-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to right, #4834d4, #686de0);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(72, 52, 212, 0.3);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background: #ff7675;
+  color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+.error-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-container {
+    width: 95%;
+    margin: 1rem;
   }
-}
 
-* {
-  backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  .banner-title {
+    font-size: 2rem;
+  }
+
+  .form-container {
+    padding: 1.5rem;
+  }
 }
 </style>

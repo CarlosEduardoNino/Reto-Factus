@@ -1,13 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/home.vue';
 import LoginView from '../views/login.vue';
-
-import { useAuthStore } from '../store/store.js';
+import { useAdministradorStore } from '../store/store.js';  // Importar el store de Pinia
 
 const routes = [
   { path: '/home', name: 'home', component: Home,  },
   { path: '/', name: 'login', component: LoginView },
-  
 ];
 
 const router = createRouter({
@@ -16,11 +14,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const authStore = useAuthStore();
+  const administradorStore = useAdministradorStore();  // Acceder al store de Pinia
 
-  // Verificar si la ruta requiere autenticación y si el usuario está autenticado
-  if (to.meta.requiresAuth && !authStore.token) {
-    next({ name: 'login' });  // Usar el nombre 'login' correctamente
+  // Verificar si el token existe en el store
+  if (to.meta.requiresAuth && !administradorStore.token) {
+    next({ name: 'login' });
   } else {
     next();
   }
